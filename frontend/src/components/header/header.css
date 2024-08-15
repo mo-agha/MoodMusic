@@ -1,0 +1,53 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #25283d;
+  padding: 10px 20px;
+  border-radius: 10px;
+  width: 15%;
+  height: 150px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 8px #efd9ce;
+  margin: 20px 0px 0px 20px;
+  animation: bassShadow 0.4s ease-in-out infinite;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.logo {
+  max-width: 150px;
+  height: auto;
+  animation: bassPulse 0.4s ease-in-out infinite;
+}
+
+@keyframes bassPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bassShadow {
+  0% {
+    box-shadow: 0 1px 8px rgba(239, 217, 206, 0.8);
+  }
+  50% {
+    box-shadow: 0 4px 16px rgba(239, 217, 206, 1);
+  }
+  100% {
+    box-shadow: 0 1px 8px rgba(239, 217, 206, 0.8);
+  }
+}

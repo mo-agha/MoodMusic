@@ -1,0 +1,79 @@
+.mood {
+  color: #e2c6cd;
+  font-weight: bold;
+  margin-top: 50px;
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  margin-top: 100px;
+  animation: colorChange 2s ease forwards;
+  transition: text-shadow 0.5s ease;
+}
+
+.mood:hover {
+  text-shadow: 0 0 10px #44e364;
+}
+
+.song-title {
+  color: #e2cec4;
+  margin: 25px 0 0px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.song-page {
+  text-align: center;
+}
+
+.song-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  font-weight: bold;
+  border: #44e364 2px solid;
+  border-radius: 10px;
+  box-shadow: 0 1px 8px #44e364;
+  padding: 10px;
+}
+
+.song-artist {
+  color: #efd9ce;
+}
+
+.error {
+  color: yellow;
+}
+
+img {
+  width: 300px;
+  height: 300px;
+}
+
+@keyframes colorChange {
+  0% {
+    color: #e2c6cd;
+  }
+  100% {
+    color: #44e364;
+  }
+}
+
+/* .change-mood {
+  position: fixed;
+  top: 30%;
+  right: 100px;
+  text-align: left;
+  z-index: 1000;
+}
+
+.change-mood p {
+  font-size: 2rem;
+  color: #44e364;
+  margin: 0;
+  line-height: 1.5;
+  font-weight: bold;
+  transform: translateY(-5px);
+  text-decoration: none;
+} 
+*/
