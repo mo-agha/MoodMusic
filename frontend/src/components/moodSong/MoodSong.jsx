@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
+import data from "@emoji-mart/data";
+import { init } from "emoji-mart";
 import "./moodSong.css";
 
 const MoodSong = () => {
@@ -9,24 +11,54 @@ const MoodSong = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchTrack = async () => {
-      try {
-        const response = await axios.get("/api/spotify/tracks", {
-          params: { mood: decodeURIComponent(mood) },
-        });
-        console.log("API Response:", response.data); // Log API response
-        setTrack(response.data[0]);
-      } catch (err) {
-        setError("Error fetching track");
-      }
-    };
-
+    init({ data });
     fetchTrack();
   }, [mood]);
 
+  const fetchTrack = async () => {
+    try {
+      const response = await axios.get("/api/spotify/tracks", {
+        params: { mood: decodeURIComponent(mood) },
+      });
+      console.log("API Response:", response.data); // Log API response
+      setTrack(response.data[0]);
+    } catch (err) {
+      setError("Error fetching track");
+    }
+  };
+
+  const handleRefresh = (e) => {
+    e.preventDefault();
+    fetchTrack();
+  };
+
+  const moodToEmoji = {
+    Happy: "smile",
+    Sad: "cry",
+    Relaxed: "relieved",
+    Energetic: "zap",
+    Romantic: "heart_eyes",
+    Angry: "rage",
+    Focused: "brain",
+    Motivated: "muscle",
+    Spicy: "hot_pepper",
+    Party: "mirror_ball",
+    Chill: "man_in_lotus_position",
+    Sleepy: "sleeping",
+    Lonely: "pensive",
+    Excited: "star-struck",
+    Confident: "smirk",
+    Mellow: "herb",
+  };
+
   return (
     <div className="song-page">
-      <h1 className="mood">{decodeURIComponent(mood)}</h1>
+      <h1 className="mood">
+        <em-emoji
+          id={moodToEmoji[decodeURIComponent(mood)]}
+          size="72px"
+        ></em-emoji>
+      </h1>
       {error && <p className="error">{error}</p>}
       {track ? (
         <div className="song-details">
@@ -46,18 +78,18 @@ const MoodSong = () => {
               title="Spotify Player"
             ></iframe>
           )}
+          <button id="refresh" type="submit" onClick={handleRefresh}>
+            Another One
+            <img
+              src="/dj-khaled.jpg"
+              alt="DJ Khaled"
+              className="dj-khaled-img"
+            />
+          </button>
         </div>
       ) : (
         <p>Loading...</p>
       )}
-      {/* <div className="change-mood">
-        <Link to="/" className="change-mood-link">
-          <p>in</p>
-          <p>a</p>
-          <p>different</p>
-          <p>mood?</p>
-        </Link>
-      </div> */}
     </div>
   );
 };

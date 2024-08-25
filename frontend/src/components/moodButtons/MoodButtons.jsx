@@ -13,7 +13,7 @@ const MoodButtons = () => {
     "Angry",
     "Focused",
     "Motivated",
-    "Nostalgic",
+    "Spicy",
     "Party",
     "Chill",
     "Sleepy",

@@ -50,24 +50,24 @@ router.get("/tracks", async (req, res) => {
 });
 
 const getSeedGenresForMood = (mood) => {
-  // Map moods to genres or use other seeds
+  // Map moods to more specific genres
   const moodGenres = {
-    Happy: ["pop", "dance"],
-    Sad: ["sad", "acoustic"],
-    Relaxed: ["chill", "ambient"],
-    Energetic: ["rock", "dance"],
-    Romantic: ["romance", "soft"],
-    Angry: ["metal", "hardcore"],
-    Focused: ["instrumental", "ambient"],
-    Motivated: ["pop", "rock"],
-    Nostalgic: ["classic", "retro"],
-    Party: ["dance", "electronic"],
-    Chill: ["chill", "lo-fi"],
-    Sleepy: ["ambient", "soft"],
-    Lonely: ["soul", "blues"],
-    Excited: ["dance", "pop"],
-    Confident: ["pop", "rock"],
-    Mellow: ["acoustic", "folk"],
+    Happy: ["happy", "pop", "upbeat"],
+    Sad: ["sad", "acoustic", "piano"],
+    Relaxed: ["chill", "ambient", "downtempo"],
+    Energetic: ["hard-rock", "dance-punk", "electro"],
+    Romantic: ["romance", "smooth-soul", "love-songs"],
+    Angry: ["heavy-metal", "hardcore-punk", "nu-metal"],
+    Focused: ["minimal", "ambient-electronic", "classical"],
+    Motivated: ["motivational", "anthem", "power-pop"],
+    Spicy: ["latin", "neo-soul", "jazzy-grooves"],
+    Party: ["club", "electro-house", "dance-anthems"],
+    Chill: ["chill", "lo-fi-beats", "downtempo"],
+    Sleepy: ["sleep", "relaxing-instrumentals", "soft-piano"],
+    Lonely: ["blues", "melancholia", "soulful"],
+    Excited: ["pop", "electronic", "dance"],
+    Confident: ["swagger", "alt-rock", "indie-pop"],
+    Mellow: ["folk", "acoustic", "soft"],
   };
   return moodGenres[mood] || [];
 };
