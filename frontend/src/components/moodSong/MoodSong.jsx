@@ -13,7 +13,7 @@ const MoodSong = () => {
   useEffect(() => {
     init({ data });
     fetchTrack();
-  }, [mood]);
+  }, [mood, fetchTrack]);
 
   const fetchTrack = async () => {
     try {
