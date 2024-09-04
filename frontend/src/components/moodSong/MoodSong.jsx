@@ -15,12 +15,14 @@ const MoodSong = () => {
     fetchTrack();
   }, [mood, fetchTrack]);
 
+  const apiURL = process.env.REACT_APP_API_URL;
+
   const fetchTrack = async () => {
     try {
-      const response = await axios.get("/api/spotify/tracks", {
+      const response = await axios.get(`${apiURL}/spotify/tracks`, {
         params: { mood: decodeURIComponent(mood) },
       });
-      console.log("API Response:", response.data); // Log API response
+      console.log("API Response:", response.data);
       setTrack(response.data[0]);
     } catch (err) {
       setError("Error fetching track");
