@@ -10,7 +10,7 @@ const MoodSong = () => {
   const [track, setTrack] = useState(null);
   const [error, setError] = useState("");
 
-  const apiURL = process.env.REACT_APP_API_URL;
+  const apiURL = process.env.REACT_APP_API_LOCAL_URL;
 
   const fetchTrack = async () => {
     try {
@@ -62,7 +62,7 @@ const MoodSong = () => {
         ></em-emoji>
       </h1>
       {error && <p className="error">{error}</p>}
-      {track ? (
+      {track && track.artists ? (
         <div className="song-details">
           <h1 className="song-title">{track.name}</h1>
           <p className="song-artist">
