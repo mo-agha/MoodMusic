@@ -10,11 +10,6 @@ const MoodSong = () => {
   const [track, setTrack] = useState(null);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    init({ data });
-    fetchTrack();
-  }, [mood, fetchTrack]);
-
   const apiURL = process.env.REACT_APP_API_URL;
 
   const fetchTrack = async () => {
@@ -28,6 +23,11 @@ const MoodSong = () => {
       setError("Error fetching track");
     }
   };
+
+  useEffect(() => {
+    init({ data });
+    fetchTrack();
+  }, [mood]);
 
   const handleRefresh = (e) => {
     e.preventDefault();
