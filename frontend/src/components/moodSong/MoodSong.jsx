@@ -10,7 +10,7 @@ const MoodSong = () => {
   const [track, setTrack] = useState(null);
   const [error, setError] = useState("");
 
-  const apiURL = process.env.REACT_APP_API_LOCAL_URL;
+  const apiURL = process.env.REACT_APP_API_URL;
 
   const fetchTrack = async () => {
     try {
