@@ -14,6 +14,8 @@ const MoodSong = () => {
 
   const fetchTrack = async () => {
     try {
+      console.log("API URL:", apiURL);
+      console.log("Fetching track with mood:", decodeURIComponent(mood));
       const response = await axios.get(`${apiURL}/spotify/tracks`, {
         params: { mood: decodeURIComponent(mood) },
       });
