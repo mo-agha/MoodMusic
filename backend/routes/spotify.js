@@ -1,3 +1,5 @@
+const express = require("express");
+const router = express.Router();
 const axios = require("axios");
 
 // Function to get Spotify access token
@@ -19,23 +21,11 @@ const getAccessToken = async () => {
   return data.access_token;
 };
 
-// Vercel serverless function handler
-export default async function handler(req, res) {
-  
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
-
-  if (req.method !== 'GET') {
-    return res.status(405).json({ error: "Only GET method is allowed" });
-  }
-
+// Route to search tracks by mood
+router.get("/tracks", async (req, res) => {
   const { mood } = req.query;
 
+  // Map moods to seed genres or artists
   const seedGenres = getSeedGenresForMood(mood);
 
   try {
@@ -48,7 +38,7 @@ export default async function handler(req, res) {
         },
         params: {
           seed_genres: seedGenres.join(","),
-          limit: 1,
+          limit: 1, // Number of tracks to return
         },
       }
     );
@@ -57,10 +47,10 @@ export default async function handler(req, res) {
     console.error("Error fetching recommendations:", error);
     res.status(500).json({ error: "Error fetching recommendations" });
   }
-}
+});
 
-// Function to map moods to genres
 const getSeedGenresForMood = (mood) => {
+  // Map moods to more specific genres
   const moodGenres = {
     Happy: ["happy", "pop", "upbeat"],
     Sad: ["sad", "acoustic", "piano"],
@@ -81,3 +71,5 @@ const getSeedGenresForMood = (mood) => {
   };
   return moodGenres[mood] || [];
 };
+
+module.exports = router;
