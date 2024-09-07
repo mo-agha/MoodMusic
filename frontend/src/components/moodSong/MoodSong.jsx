@@ -10,7 +10,7 @@ const MoodSong = () => {
   const [track, setTrack] = useState(null);
   const [error, setError] = useState("");
 
-  const apiURL = process.env.REACT_APP_API_URL;
+  const apiURL = "https://mood-music-backend.vercel.app/api";
 
   const fetchTrack = async () => {
     try {
