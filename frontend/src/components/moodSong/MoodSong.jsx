@@ -10,13 +10,13 @@ const MoodSong = () => {
   const [track, setTrack] = useState(null);
   const [error, setError] = useState("");
 
-  const apiURL = "https://mood-music-backend.vercel.app/api";
+  const apiURL = "https://moodmusic-server.vercel.app";
 
   const fetchTrack = async () => {
     try {
       console.log("API URL:", apiURL);
       console.log("Fetching track with mood:", decodeURIComponent(mood));
-      const response = await axios.get(`${apiURL}/spotify/tracks`, {
+      const response = await axios.get(`${apiURL}/tracks`, {
         params: { mood: decodeURIComponent(mood) },
       });
       console.log("API Response:", response.data);
