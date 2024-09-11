@@ -1,6 +1,12 @@
+require("dotenv").config();
 const express = require("express");
-const router = express.Router();
+const cors = require("cors");
 const axios = require("axios");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 // Function to get Spotify access token
 const getAccessToken = async () => {
@@ -22,7 +28,7 @@ const getAccessToken = async () => {
 };
 
 // Route to search tracks by mood
-router.get("/tracks", async (req, res) => {
+app.get("/tracks", async (req, res) => {
   const { mood } = req.query;
 
   // Map moods to seed genres or artists
@@ -72,4 +78,9 @@ const getSeedGenresForMood = (mood) => {
   return moodGenres[mood] || [];
 };
 
-module.exports = router;
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
+
+module.exports = app;
